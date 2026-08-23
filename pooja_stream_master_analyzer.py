@@ -5,7 +5,6 @@ import threading
 import queue
 import cv2
 import numpy as np
-import audioop
 
 # ============================================================
 # CONFIG
@@ -240,10 +239,21 @@ def run_audio():
                 )
             )
 
-            rms = audioop.rms(
+            samples = np.frombuffer(
                 data,
-                AUDIO_SAMPLE_WIDTH
+                dtype=np.int16
             )
+
+            if samples.size:
+                rms = float(
+                    np.sqrt(
+                        np.mean(
+                            samples.astype(np.float64) ** 2
+                        )
+                    )
+                )
+            else:
+                rms = 0.0
 
             audio_results.append(
                 {
