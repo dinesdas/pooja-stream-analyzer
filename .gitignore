@@ -1,0 +1,15 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+output/*.csv
+videos/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.mp3
+
+_gui_*.py
+*_gui_*.py
